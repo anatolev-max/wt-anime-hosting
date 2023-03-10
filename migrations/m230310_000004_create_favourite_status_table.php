@@ -3,19 +3,19 @@
 use yii\db\Migration;
 
 /**
- * Handles the creation of table `{{%review}}`.
+ * Handles the creation of table `{{%favourite_status}}`.
  */
-class m230310_161500_create_review_table extends Migration
+class m230310_000004_create_favourite_status_table extends Migration
 {
     /**
      * {@inheritdoc}
      */
     public function safeUp()
     {
-        $this->createTable('{{%review}}', [
+        $this->createTable('{{%favourite_status}}', [
             'id' => $this->primaryKey()->unsigned(),
             'created_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
-            'rate' => $this->integer()->unsigned()->notNull(),
+            'name' => $this->string(128)->notNull()->unique(),
         ]);
     }
 
@@ -24,6 +24,6 @@ class m230310_161500_create_review_table extends Migration
      */
     public function safeDown()
     {
-        $this->dropTable('{{%review}}');
+        $this->dropTable('{{%favourite_status}}');
     }
 }

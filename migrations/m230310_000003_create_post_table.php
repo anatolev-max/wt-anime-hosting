@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `{{%post}}`.
  */
-class m230310_161357_create_post_table extends Migration
+class m230310_000003_create_post_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -23,6 +23,26 @@ class m230310_161357_create_post_table extends Migration
             'user_id' => $this->integer()->unsigned()->notNull(),
             'type_id' => $this->integer()->unsigned()->notNull(),
         ]);
+
+        // creates foreign key for table 'user'
+        $this->addForeignKey(
+            '{{%fk-post-user_id}}',
+            '{{%post}}',
+            'user_id',
+            '{{%user}}',
+            'id',
+            'CASCADE'
+        );
+
+        // creates foreign key for table 'post_type'
+        $this->addForeignKey(
+            '{{%fk-post-type_id}}',
+            '{{%post}}',
+            'type_id',
+            '{{%post_type}}',
+            'id',
+            'CASCADE'
+        );
     }
 
     /**

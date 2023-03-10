@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Handles the creation of table `{{%favourite_post}}`.
  */
-class m230310_161430_create_favourite_post_table extends Migration
+class m230310_000005_create_favourite_post_table extends Migration
 {
     /**
      * {@inheritdoc}
@@ -19,6 +19,26 @@ class m230310_161430_create_favourite_post_table extends Migration
             'post_id' => $this->integer()->unsigned()->notNull(),
             'status_id' => $this->integer()->unsigned()->notNull(),
         ]);
+
+        // creates foreign key for table 'user'
+        $this->addForeignKey(
+            '{{%fk-favourite_post-user_id}}',
+            '{{%favourite_post}}',
+            'user_id',
+            '{{%user}}',
+            'id',
+            'CASCADE'
+        );
+
+        // creates foreign key for table 'post'
+        $this->addForeignKey(
+            '{{%fk-favourite_post-post_id}}',
+            '{{%favourite_post}}',
+            'post_id',
+            '{{%post}}',
+            'id',
+            'CASCADE'
+        );
     }
 
     /**
