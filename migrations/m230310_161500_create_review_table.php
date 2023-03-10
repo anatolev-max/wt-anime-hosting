@@ -13,7 +13,9 @@ class m230310_161500_create_review_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%review}}', [
-            'id' => $this->primaryKey(),
+            'id' => $this->primaryKey()->unsigned(),
+            'created_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
+            'rate' => $this->integer()->unsigned()->notNull(),
         ]);
     }
 

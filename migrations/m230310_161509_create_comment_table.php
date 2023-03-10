@@ -13,7 +13,10 @@ class m230310_161509_create_comment_table extends Migration
     public function safeUp()
     {
         $this->createTable('{{%comment}}', [
-            'id' => $this->primaryKey(),
+            'created_at' => $this->timestamp()->notNull()->defaultExpression('CURRENT_TIMESTAMP'),
+            'text' => $this->string(128)->notNull(),
+            'user_id' => $this->integer()->unsigned()->notNull(),
+            'post_id' => $this->integer()->unsigned()->notNull(),
         ]);
     }
 
