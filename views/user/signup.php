@@ -7,7 +7,6 @@ use app\assets\LoginAsset;
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use app\widgets\Alert;
 
 $this->title = Yii::$app->name . ' | Регистрация';
 
@@ -16,31 +15,28 @@ LoginAsset::register($this);
 ?>
 <section>
     <h2 class="form__title">Регистрация</h2>
-    <form class="form">
-        <div class="mb-3">
-            <label for="login" class="form-label">Логин</label>
-            <input type="text" class="form-control" id="login" aria-describedby="loginHelp">
-            <div id="loginHelp" class="form-text"></div>
-        </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Пароль</label>
-            <input type="password" class="form-control" id="password">
-            <div id="passwordHelp" class="form-text"></div>
-        </div>
-        <div class="mb-3">
-            <label for="passwordRepeat" class="form-label">Повторите пароль</label>
-            <input type="password" class="form-control" id="passwordRepeat">
-            <div id="passwordRepeatHelp" class="form-text"></div>
-        </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
-            <div id="emailHelp" class="form-text"></div>
-        </div>
-        <div class="mb-3">
-            Сюда надо вставить каптчу, я не знаю как это делается
-        </div>
-        <button type="submit" class="btn btn-primary">Отправить</button>
-        <p>Уже есть аккаунт? <a href="login.php">Войдите</a></p>
-    </form>
+    <?php $form = ActiveForm::begin([
+        'action' => Url::to(['user/signup']),
+        'options' => [
+            'class' => 'form',
+            'novalidate' => true,
+            'autocomplete' => 'off'
+        ],
+        'fieldConfig' => [
+            'options' => ['class' => 'mb-3'],
+            'errorOptions' => ['class' => 'form-text']
+        ],
+    ]); ?>
+
+        <?= $form->field($model, 'login')->textInput() ?>
+        <?= $form->field($model, 'password')->passwordInput() ?>
+        <?= $form->field($model, 'password_repeat')->passwordInput() ?>
+        <?= $form->field($model, 'email')->textInput() ?>
+        <?= $form->field($model, 'avatar')->fileInput() ?>
+        <?= $form->field($model, 'age')->input('number', ['min' => 14, 'max' => 100]) ?>
+
+        <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary']) ?>
+
+    <?php ActiveForm::end(); ?>
+
 </section>

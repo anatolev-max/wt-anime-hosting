@@ -56,6 +56,7 @@ $config = [
         ],
     ],
     'params' => $params,
+    'name' => 'AnimeHub',
 ];
 
 if (YII_ENV_DEV) {

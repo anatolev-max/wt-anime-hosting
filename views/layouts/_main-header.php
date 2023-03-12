@@ -4,7 +4,7 @@
 
 use yii\helpers\Url;
 
-//$user = $this->context->user;
+$user = $this->context->user;
 
 ?>
 <header class="page-header">
