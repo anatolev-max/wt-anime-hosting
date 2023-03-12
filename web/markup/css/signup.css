@@ -1,0 +1,32 @@
+.form {
+  border: 1px solid #9b0000;
+  padding: 30px;
+  border-radius: 20px;
+  margin: 30px auto;
+}
+
+.form__title {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.btn-primary {
+  border: none;
+  background: #9b0000;
+  border-radius: 20px;
+}
+
+.btn-primary:hover {
+  background: #9b0000;
+}
+
+input {
+  border: none !important;
+  border: 1px solid #FFF !important;
+  border-bottom: 1px solid #9b0000 !important;
+}
+
+input:focus {
+  border: 1px solid #9b0000 !important;
+  box-shadow: 0 0 0 0.2rem rgba(155, 0, 0, 0.3) !important;
+}

@@ -1,0 +1,33 @@
+.catalog {
+  padding: 40px 0;
+}
+
+.catalog__item-img {
+  border: 1px solid #9b0000;
+  display: block;
+  width: auto;
+  height: 300px;
+  object-fit: cover;
+}
+.catalog__item{
+  color: #000;
+}
+.catalog__item:hover{
+  color: #000;
+}
+.catalog__item-wrapper {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
+.catalog__item-title {
+  text-align: center;
+}
+
+.catalog__wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  row-gap: 15px;
+  column-gap: 20px;
+}
