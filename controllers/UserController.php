@@ -8,6 +8,8 @@ use yii\web\Response;
 
 class UserController extends Controller
 {
+    public $mainClass = 'container main-page__container';
+
     public function actionSignup(): string
     {
         return $this->render('signup');

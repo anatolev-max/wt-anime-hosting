@@ -14,7 +14,6 @@ $this->title = Yii::$app->name . ' | Регистрация';
 LoginAsset::register($this);
 
 ?>
-<!-- <link rel="stylesheet" href="signup.css"> -->
 <section>
     <h2 class="form__title">Регистрация</h2>
     <form class="form">

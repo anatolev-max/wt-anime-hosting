@@ -23,7 +23,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <?php $this->beginBody() ?>
     <?= $this->render('_main-header.php') ?>
 
-    <main>
+    <main class="<?= $this->context->mainClass ?? '' ?>">
         <?= $content ?>
     </main>
 
