@@ -21,6 +21,9 @@ class PostType extends ActiveRecord
     public function rules(): array
     {
         return [
+            [['name'], 'trim'],
+            [['name'], 'required'],
+            [['name'], 'string', 'max' => 128],
         ];
     }
 }

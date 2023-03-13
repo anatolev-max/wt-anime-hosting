@@ -23,6 +23,17 @@ class Comment extends ActiveRecord
     public function rules(): array
     {
         return [
+            [['text'], 'trim'],
+            [['text'], 'required'],
+            [['text'], 'string', 'max' => 128],
+
+            [['user_id'], 'required'],
+            [['user_id'], 'integer'],
+            [['user_id'], 'exist', 'targetClass' => User::class, 'targetAttribute' => 'id'],
+
+            [['post_id'], 'required'],
+            [['post_id'], 'integer'],
+            [['post_id'], 'exist', 'targetClass' => Post::class, 'targetAttribute' => 'id'],
         ];
     }
 }

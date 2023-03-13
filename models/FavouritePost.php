@@ -23,6 +23,17 @@ class FavouritePost extends ActiveRecord
     public function rules(): array
     {
         return [
+            [['user_id'], 'required'],
+            [['user_id'], 'integer'],
+            [['user_id'], 'exist', 'targetClass' => User::class, 'targetAttribute' => 'id'],
+
+            [['post_id'], 'required'],
+            [['post_id'], 'integer'],
+            [['post_id'], 'exist', 'targetClass' => Post::class, 'targetAttribute' => 'id'],
+
+            [['status_id'], 'required'],
+            [['status_id'], 'integer'],
+            [['status_id'], 'exist', 'targetClass' => FavouriteStatus::class, 'targetAttribute' => 'id'],
         ];
     }
 }
