@@ -1,6 +1,7 @@
 <?php
 
 /** @var yii\web\View $this */
+/** @var app\models\Post[] $posts */
 
 use app\assets\IndexAsset;
 use yii\helpers\Html;
@@ -18,32 +19,15 @@ IndexAsset::register($this);
         <div class="catalog__wrapper">
 
             <?php foreach ($posts ?? [] as $post): ?>
-                <a href='post.html' class="catalog__item">
-                    <img src="img/1.jpg" alt='Фото аниме' class="catalog__item-img">
-                    <p class="catalog__item-title">Стальной алхимик</p>
+                <a href="<?= Url::to(['site/view', 'postId' => $post->id]) ?>" class="catalog__item">
+                    <img src="/img/<?= Html::encode($post->image_path) ?>" alt='Фото аниме' class="catalog__item-img">
+                    <p class="catalog__item-title"><?= Html::encode($post->title) ?></p>
                     <div class="catalog__item-wrapper">
-                        <p class="catalog__item-type">TV сериал</p>
-                        <p class="catalog__item-year">2002</p>
+                        <p class="catalog__item-type"><?= Html::encode($post->type->name) ?></p>
+                        <p class="catalog__item-year"><?= Html::encode($post->year) ?></p>
                     </div>
                 </a>
             <?php endforeach; ?>
-
-            <a href='post.html' class="catalog__item">
-                <img src="img/1.jpg" alt='Фото аниме' class="catalog__item-img">
-                <p class="catalog__item-title">Стальной алхимик</p>
-                <div class="catalog__item-wrapper">
-                    <p class="catalog__item-type">TV сериал</p>
-                    <p class="catalog__item-year">2002</p>
-                </div>
-            </a>
-            <a href='post.html' class="catalog__item">
-                <img src="img/1.jpg" alt='Фото аниме' class="catalog__item-img">
-                <p class="catalog__item-title">Стальной алхимик</p>
-                <div class="catalog__item-wrapper">
-                    <p class="catalog__item-type">TV сериал</p>
-                    <p class="catalog__item-year">2002</p>
-                </div>
-            </a>
 
         </div>
     </section>

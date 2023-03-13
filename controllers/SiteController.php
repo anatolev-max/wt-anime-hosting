@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Post;
 use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
@@ -10,6 +11,7 @@ use yii\web\Controller;
 class SiteController extends Controller
 {
     public $user;
+    public $mainClass;
 
     public function behaviors(): array
     {
@@ -30,8 +32,11 @@ class SiteController extends Controller
     public function actionIndex(): string
     {
         $this->user = User::findOne(Yii::$app->user->id);
+        $posts = Post::find()->all();
 
-        return $this->render('index');
+        return $this->render('index', [
+            'posts' => $posts
+        ]);
     }
 
     public function actionView(): string
