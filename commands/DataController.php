@@ -8,7 +8,16 @@ use yii\helpers\BaseInflector;
 
 class DataController extends Controller
 {
-    const POST_TYPE = [
+    const POST_TYPES = [
+        [
+            'name' => 'Фильм',
+        ],
+        [
+            'name' => 'Сериал',
+        ],
+        [
+            'name' => 'Видео',
+        ],
     ];
 
     public function actionImport(): int
