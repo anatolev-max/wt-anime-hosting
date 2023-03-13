@@ -19,6 +19,7 @@ use yii\web\IdentityInterface;
  * @property string $avatar_path
  *
  * @property Post[] $posts
+ * @property Post[] $favouritePosts
  * @property Comment[] $comments
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -63,6 +64,12 @@ class User extends ActiveRecord implements IdentityInterface
     public function getComments(): ActiveQuery
     {
         return $this->hasMany(Comment::class, ['user_id' => 'id']);
+    }
+
+    public function getFavouritePosts()
+    {
+        return $this->hasMany(Post::class, ['id' => 'post_id'])
+            ->viaTable('favourite_post', ['user_id' => 'id']);
     }
 
     // IdentityInterface
