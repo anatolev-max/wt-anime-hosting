@@ -20,10 +20,32 @@ class DataController extends Controller
         ],
     ];
 
+    const POSTS = [
+        [
+            'title' => 'example-title-1',
+            'desc' => 'example-desc',
+            'year' => 2001,
+            'image_path' => '1.jpg',
+            'episode_count' => 10,
+            'user_id' => 1,
+            'type_id' => 2,
+        ],
+        [
+            'title' => 'example-title-2',
+            'desc' => 'example-desc',
+            'year' => 2001,
+            'image_path' => '2.jpg',
+            'episode_count' => 10,
+            'user_id' => 1,
+            'type_id' => 2,
+        ],
+    ];
+
     public function actionImport(): int
     {
         define('ENTITIES', [
             'post_type',
+            'post',
         ]);
 
         foreach (ENTITIES as $entity) {
