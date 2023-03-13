@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 /**
@@ -12,6 +13,9 @@ use yii\db\ActiveRecord;
  * @property string $text
  * @property int $user_id
  * @property int $post_id
+ *
+ * @property User $user
+ * @property Post $post
  */
 class Comment extends ActiveRecord
 {
@@ -35,5 +39,15 @@ class Comment extends ActiveRecord
             [['post_id'], 'integer'],
             [['post_id'], 'exist', 'targetClass' => Post::class, 'targetAttribute' => 'id'],
         ];
+    }
+
+    public function getUser(): ActiveQuery
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    public function getPost(): ActiveQuery
+    {
+        return $this->hasOne(Post::class, ['id' => 'post_id']);
     }
 }

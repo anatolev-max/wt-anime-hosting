@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 /**
@@ -16,6 +17,10 @@ use yii\db\ActiveRecord;
  * @property int $episode_count
  * @property int $user_id
  * @property int $type_id
+ *
+ * @property User $user
+ * @property PostType $postType
+ * @property Comment[] $comments
  */
 class Post extends ActiveRecord
 {
@@ -53,5 +58,20 @@ class Post extends ActiveRecord
             [['type_id'], 'integer'],
             [['type_id'], 'exist', 'targetClass' => PostType::class, 'targetAttribute' => 'id'],
         ];
+    }
+
+    public function getUser(): ActiveQuery
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    public function getType(): ActiveQuery
+    {
+        return $this->hasOne(PostType::class, ['id' => 'type_id']);
+    }
+
+    public function getComments(): ActiveQuery
+    {
+        return $this->hasMany(Comment::class, ['post_id' => 'id']);
     }
 }

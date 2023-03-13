@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 /**
@@ -10,6 +11,8 @@ use yii\db\ActiveRecord;
  * @property int $id
  * @property string $created_at
  * @property string $name
+ *
+ * @property Post[] $posts
  */
 class PostType extends ActiveRecord
 {
@@ -25,5 +28,10 @@ class PostType extends ActiveRecord
             [['name'], 'required'],
             [['name'], 'string', 'max' => 128],
         ];
+    }
+
+    public function getPosts(): ActiveQuery
+    {
+        return $this->hasMany(Post::class, ['type_id' => 'id']);
     }
 }

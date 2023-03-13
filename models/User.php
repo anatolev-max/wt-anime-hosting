@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
@@ -16,6 +17,9 @@ use yii\web\IdentityInterface;
  * @property string $email
  * @property int $age
  * @property string $avatar_path
+ *
+ * @property Post[] $posts
+ * @property Comment[] $comments
  */
 class User extends ActiveRecord implements IdentityInterface
 {
@@ -49,6 +53,16 @@ class User extends ActiveRecord implements IdentityInterface
             [['avatar_path'], 'string', 'max' => 128],
             [['avatar_path'], 'unique'],
         ];
+    }
+
+    public function getPosts(): ActiveQuery
+    {
+        return $this->hasMany(Post::class, ['user_id' => 'id']);
+    }
+
+    public function getComments(): ActiveQuery
+    {
+        return $this->hasMany(Comment::class, ['user_id' => 'id']);
     }
 
     // IdentityInterface

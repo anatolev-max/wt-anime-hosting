@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 /**
@@ -12,6 +13,10 @@ use yii\db\ActiveRecord;
  * @property int $user_id
  * @property int $post_id
  * @property int $status_id
+ *
+ * @property User $user
+ * @property Post $post
+ * @property FavouriteStatus $status
  */
 class FavouritePost extends ActiveRecord
 {
@@ -35,5 +40,20 @@ class FavouritePost extends ActiveRecord
             [['status_id'], 'integer'],
             [['status_id'], 'exist', 'targetClass' => FavouriteStatus::class, 'targetAttribute' => 'id'],
         ];
+    }
+
+    public function getUser(): ActiveQuery
+    {
+        return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    public function getPost(): ActiveQuery
+    {
+        return $this->hasOne(Post::class, ['id' => 'post_id']);
+    }
+
+    public function getStatus(): ActiveQuery
+    {
+        return $this->hasOne(FavouriteStatus::class, ['id' => 'status_id']);
     }
 }
