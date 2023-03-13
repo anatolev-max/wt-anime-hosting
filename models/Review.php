@@ -23,6 +23,9 @@ class Review extends ActiveRecord
     public function rules(): array
     {
         return [
+            [['rate'], 'required'],
+            [['rate'], 'integer'],
+
             [['user_id'], 'required'],
             [['user_id'], 'integer'],
             [['user_id'], 'exist', 'targetClass' => User::class, 'targetAttribute' => 'id'],
