@@ -41,6 +41,10 @@ class SiteController extends Controller
 
     public function actionView(): string
     {
+        if (!$post = Post::findOne($postId)) {
+            throw new NotFoundHttpException();
+        }
+
         $this->user = User::findOne(Yii::$app->user->id);
         $this->mainClass = 'container main-page__container';
 
