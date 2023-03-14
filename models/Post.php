@@ -15,6 +15,7 @@ use yii\db\ActiveRecord;
  * @property int $year
  * @property string $image_path
  * @property int $episode_count
+ * @property int $episode_duration
  * @property int $user_id
  * @property int $type_id
  *

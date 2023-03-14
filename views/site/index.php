@@ -19,7 +19,7 @@ IndexAsset::register($this);
         <div class="catalog__wrapper">
 
             <?php foreach ($posts ?? [] as $post): ?>
-                <a href="<?= Url::to(['site/view', 'postId' => $post->id]) ?>" class="catalog__item">
+                <a href="<?= Url::to(['site/view', 'post_id' => $post->id]) ?>" class="catalog__item">
                     <img src="/img/<?= Html::encode($post->image_path) ?>" alt='Фото аниме' class="catalog__item-img">
                     <p class="catalog__item-title"><?= Html::encode($post->title) ?></p>
                     <div class="catalog__item-wrapper">

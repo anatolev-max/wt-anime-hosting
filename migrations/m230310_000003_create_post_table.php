@@ -20,6 +20,7 @@ class m230310_000003_create_post_table extends Migration
             'year' => $this->integer()->unsigned()->notNull(),
             'image_path' => $this->string(128)->notNull()->unique(),
             'episode_count' => $this->integer()->unsigned()->null(),
+            'episode_duration' => $this->integer()->unsigned()->null(),
             'user_id' => $this->integer()->unsigned()->notNull(),
             'type_id' => $this->integer()->unsigned()->notNull(),
         ]);

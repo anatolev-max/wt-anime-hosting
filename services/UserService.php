@@ -27,4 +27,17 @@ class UserService
 
         return $user->save();
     }
+
+    public function dc_create(array $data): bool
+    {
+        $user = new User();
+
+        $user->login = $data['login'];
+        $user->password_hash = Yii::$app->security->generatePasswordHash($data['password']);
+        $user->age = $data['age'];
+        $user->email = $data['email'];
+        $user->avatar_path = $data['avatar_path'];
+
+        return $user->save();
+    }
 }

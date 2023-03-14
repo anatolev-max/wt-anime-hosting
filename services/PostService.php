@@ -19,6 +19,7 @@ class PostService
         $post->year = $data['year'];
         $post->image_path = $data['image_path'];
         $post->episode_count = $data['episode_count'];
+        $post->episode_duration = $data['episode_duration'];
         $post->user_id = $data['user_id'];
         $post->type_id = $data['type_id'];
 

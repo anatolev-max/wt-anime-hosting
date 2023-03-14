@@ -7,6 +7,7 @@ use app\models\User;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 class SiteController extends Controller
 {
@@ -39,15 +40,17 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionView(): string
+    public function actionView(int $post_id): string
     {
-//        if (!$post = Post::findOne($postId)) {
-//            throw new NotFoundHttpException();
-//        }
+        if (!$post = Post::findOne($post_id)) {
+            throw new NotFoundHttpException();
+        }
 
         $this->user = User::findOne(Yii::$app->user->id);
         $this->mainClass = 'container main-page__container';
 
-        return $this->render('view');
+        return $this->render('view', [
+            'post' => $post
+        ]);
     }
 }

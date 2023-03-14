@@ -8,6 +8,16 @@ use yii\helpers\BaseInflector;
 
 class DataController extends Controller
 {
+    const USERS = [
+        [
+            'login' => 'example-login',
+            'email' => 'example-email',
+            'password_hash' => 'example-password_hash',
+            'age' => 20,
+            'avatar_path' => '1.jpg',
+        ]
+    ];
+
     const POST_TYPES = [
         [
             'name' => 'Фильм',
@@ -27,6 +37,7 @@ class DataController extends Controller
             'year' => 2001,
             'image_path' => '1.jpg',
             'episode_count' => 10,
+            'episode_duration' => 30,
             'user_id' => 1,
             'type_id' => 2,
         ],
@@ -36,6 +47,7 @@ class DataController extends Controller
             'year' => 2001,
             'image_path' => '2.jpg',
             'episode_count' => 10,
+            'episode_duration' => 30,
             'user_id' => 1,
             'type_id' => 2,
         ],
@@ -44,6 +56,7 @@ class DataController extends Controller
     public function actionImport(): int
     {
         define('ENTITIES', [
+            'user',
             'post_type',
             'post',
         ]);
