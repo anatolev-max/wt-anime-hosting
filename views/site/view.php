@@ -2,11 +2,14 @@
 
 /** @var yii\web\View $this */
 /** @var app\models\Post $post */
+/** @var app\models\forms\CommentForm $model */
 
 use app\assets\ViewAsset;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\widgets\ActiveForm;
 
+$user = $this->context->user ?? null;
 $this->title = Yii::$app->name . ' | Публикация';
 
 ViewAsset::register($this);
@@ -49,15 +52,43 @@ ViewAsset::register($this);
 <section class="comment">
     <h2 class="comment__title">Комментарии</h2>
     <div class="mb-3">
-        <label for="comment" class="form-label">Введите свой комментарий:</label>
-        <textarea class="form-control" id="comment" rows="3"></textarea>
+<!--        <label for="comment" class="form-label">Введите свой комментарий:</label>-->
+<!--        <textarea class="form-control" id="comment" rows="3"></textarea>-->
+
+        <?php if (!Yii::$app->user->isGuest): ?>
+            <?php $form = ActiveForm::begin([
+                'action' => Url::to(['site/view', 'post_id' => $post->id]),
+                'options' => [
+                    'class' => 'form',
+                    'novalidate' => true,
+                    'autocomplete' => 'off',
+                ],
+                'fieldConfig' => [
+                    'options' => ['class' => 'mb-3'],
+                ],
+            ]); ?>
+
+            <?= $form->field($model, 'text', ['template' => '{input}'])->textarea() ?>
+            <?= $form->field($model, 'user_id', ['template' => '{input}'])->input('hidden', ['value' => $user->id]) ?>
+            <?= $form->field($model, 'post_id', ['template' => '{input}'])->input('hidden', ['value' => $post->id]) ?>
+
+            <?= Html::submitButton('Отправить') ?>
+
+            <?php ActiveForm::end(); ?>
+        <?php endif; ?>
+
     </div>
     <div class="comment__wrapper">
 
         <?php foreach ($post->comments as $comment): ?>
             <div class="comment__item">
                 <div class="comment__info">
-                    <img class="comment__author-image" src="" alt="Аватар автора">
+                    <img
+                        class="comment__author-image"
+                        src="/uploads/avatars/<?= Html::encode($comment->user->avatar_path) ?>"
+                        alt="Аватар автора"
+                        style="width: 50px; height: 50px; object-fit: cover; object-position: center;"
+                    >
                     <span class="comment__author-name"><?= Html::encode($comment->user->login) ?></span>
                     <span class="comment__date"><?= Html::encode($comment->created_at) ?></span>
                 </div>
