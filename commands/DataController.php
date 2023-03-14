@@ -11,8 +11,8 @@ class DataController extends Controller
     const USERS = [
         [
             'login' => 'example-login',
-            'email' => 'example-email',
-            'password_hash' => 'example-password_hash',
+            'email' => 'example@test.ru',
+            'password' => '123456',
             'age' => 20,
             'avatar_path' => '1.jpg',
         ]

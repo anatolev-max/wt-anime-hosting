@@ -5,12 +5,14 @@ namespace app\services;
 use app\models\forms\SignupForm;
 use app\models\User;
 use Yii;
+use yii\base\Exception;
 
 class UserService
 {
     /**
      * @param SignupForm $model
      * @return bool
+     * @throws Exception
      */
     public function create(SignupForm $model): bool
     {
@@ -28,6 +30,11 @@ class UserService
         return $user->save();
     }
 
+    /**
+     * @param array $data
+     * @return bool
+     * @throws Exception
+     */
     public function dc_create(array $data): bool
     {
         $user = new User();
