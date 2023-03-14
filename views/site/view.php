@@ -52,8 +52,6 @@ ViewAsset::register($this);
 <section class="comment">
     <h2 class="comment__title">Комментарии</h2>
     <div class="mb-3">
-<!--        <label for="comment" class="form-label">Введите свой комментарий:</label>-->
-<!--        <textarea class="form-control" id="comment" rows="3"></textarea>-->
 
         <?php if (!Yii::$app->user->isGuest): ?>
             <?php $form = ActiveForm::begin([

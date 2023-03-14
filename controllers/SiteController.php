@@ -61,8 +61,8 @@ class SiteController extends Controller
         $this->mainClass = 'container main-page__container';
 
         return $this->render('view', [
-            'post' => $post,
             'model' => $commentForm,
+            'post' => $post,
         ]);
     }
 }

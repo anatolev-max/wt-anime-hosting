@@ -32,7 +32,7 @@ class CommentForm extends Model
     public function attributeLabels(): array
     {
         return [
-            'text' => 'Text',
+            'text' => 'Введите свой комментарий:',
             'user_id' => 'User ID',
             'post_id' => 'Post ID',
         ];
